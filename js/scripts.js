@@ -1,22 +1,36 @@
-//business logic
-
-//customer details
-function Account(first, last) {
+//Business Logic
+function Contact(first, last) {
   this.firstName = first;
   this.lastName = last;
+  this.addresses = [];
 }
 
-Account.prototype.fullName = function() {
-  return this.firstName + "" + this.lastName;
+Contact.prototype.fullName = function() {
+  return this.firstName + " " + this.lastName;
 }
 
-function Amount(initial deposit,deposit amount,withdraw amount) {
-  this.initial = initial deposit;
-  this.deposit = deposit amount;
-  this.withdraw = withdraw amount;
-}
+var add = function(number1, number2) {
+  return number1 + number2;
+};
 
-//Add Reset function
+//Everything below this line is user interface logic
+$(document).ready(function() {
+  $("form#add").submit(function(event) {
+    event.preventDefault();
+    var number1 = parseInt($("#initial-deposit").val());
+    var number2 = parseInt($("#deposit-amount").val());
+    var result = add(number1, number2);
+    $("#output").text(result);
+  });
 
+  $("form#new-contact").submit(function(event) {
+      event.preventDefault();
 
-//Calculator
+      var inputtedFirstName = $("input#new-first-name").val();
+      var inputtedLastName = $("input#new-last-name").val();
+      var newContact = new Contact(inputtedFirstName, inputtedLastName);
+  });
+
+  $("ul#contacts").append("<li><span class='contact'>" + newContact.fullName() + "</span></li>");
+
+});
