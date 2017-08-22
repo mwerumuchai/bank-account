@@ -23,7 +23,7 @@ function resetFields() {
 
 // user interface logic
 $(document).ready(function() {
-  $("form#new-contact").submit(function(event) {
+  $("form#register").submit(function(event) {
     event.preventDefault();
 
     var inputtedFirstName = $("input#first-name").val();
